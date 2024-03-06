@@ -8,10 +8,10 @@
         public string Address { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
-        public User(string fullName, string address, string email, string password)
+        public User(string userName, string address, string email, string password)
         {
             Id = index;
-            FullName = fullName;
+            UserName = userName;
             Address = address;
             Email = email;
             Password = password;
