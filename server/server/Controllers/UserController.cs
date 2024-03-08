@@ -9,7 +9,7 @@ namespace server.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        public static List<User> users = new List<User> { new User("asa", "ass", "dhjkk", "sadfdghj") };
+        public static List<User> users = new List<User> { new User("aaa", "ass", "dhjkk", "aaa") };
         // GET: api/<UserController>
         [HttpGet]
         public IEnumerable<User> Get()
@@ -21,30 +21,39 @@ namespace server.Controllers
         [HttpGet("{id}")]
         public User Get(int id)
         {
-            var user= users.Find(x => x.Id == id);
-            if(user != null) 
+            var user = users.Find(x => x.Id == id);
+            if (user != null)
                 return user;
             return null;
         }
 
+        // GET api/<UserController>/5
+        [HttpGet("name={name}")]
+        public User Get(string name)
+        {
+            var user = users.Find(x => x.UserName == name);
+            if (user != null)
+                return user;
+            return null;
+        }
         // POST api/<UserController>
         [HttpPost]
         public void Post([FromBody] User value)
         {
-            users.Add(value);
+            users.Add(new User(value.UserName, value.Address, value.Email, value.Password));
         }
 
         // PUT api/<UserController>/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] User value)
         {
-            var user=users.Find(x => x.Id == id);
-            if(user != null)
+            var user = users.Find(x => x.Id == id);
+            if (user != null)
             {
                 user.Address = value.Address;
                 user.Password = value.Password;
                 user.UserName = value.UserName;
-                user.Email= value.Email;
+                user.Email = value.Email;
             }
         }
 
@@ -52,8 +61,8 @@ namespace server.Controllers
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
-            var user=users.Find(x=>x.Id == id);
-            if(user != null) { users.Remove(user); }
+            var user = users.Find(x => x.Id == id);
+            if (user != null) { users.Remove(user); }
         }
     }
 }

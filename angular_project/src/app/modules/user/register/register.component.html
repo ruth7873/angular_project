@@ -1,0 +1,106 @@
+<form *ngIf="this.registerForm" [formGroup]="registerForm" class="center-form ">
+    <div class="example-container">
+        <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" placeholder="user name" formControlName="userName">
+        </mat-form-field>
+        <ng-container *ngIf="registerForm.controls['userName'].errors && registerForm.controls['userName'].touched">
+            <div *ngIf="!registerForm.controls['userName'].errors['required'] && !registerForm.controls['userName'].errors['minLength']"
+                style="color: red;">
+                You must enter at least 3 characters
+            </div>
+            <div *ngIf="registerForm.controls['userName'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+        </ng-container>
+        <br>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide"
+                [disabled]="registerForm.controls['password'].errors" [attr.aria-label]="'הסתר סיסמה'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <ng-container *ngIf="registerForm.controls['password'].errors && registerForm.controls['password'].touched">
+            <div *ngIf="!registerForm.controls['password'].errors['required'] && !registerForm.controls['password'].errors['minLength']"
+                style="color: red;">
+                You must enter at least 3 characters
+            </div>
+            <div *ngIf="registerForm.controls['password'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+        </ng-container>
+        <br>
+        <mat-form-field>
+            <mat-label>User Address</mat-label>
+            <input matInput type="text" placeholder="address" formControlName="address">
+        <ng-container *ngIf="registerForm.controls['address'].errors && registerForm.controls['address'].touched">
+            <div *ngIf="registerForm.controls['address'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+        </ng-container>
+
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>User Email</mat-label>
+            <input matInput type="email" placeholder="email" formControlName="email">
+        </mat-form-field>
+        <ng-container *ngIf="registerForm.controls['email'].errors && registerForm.controls['email'].touched">
+            <div *ngIf="!registerForm.controls['email'].errors['required']&& registerForm.controls['email'].errors['email']"
+                style="color: red;">
+                The email address is invalid
+            </div>
+            <div *ngIf="registerForm.controls['email'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+
+        </ng-container>
+        <br>
+    </div>
+    <br />
+    <button mat-fab extended type="submit" (click)="registerUser()" [disabled]="!registerForm.valid">
+        <mat-icon>login</mat-icon>
+        Login
+    </button>
+</form>
+
+<!-- <form *ngIf="this.registerForm" [formGroup]="registerForm">
+    <label for="userName">User Name</label>
+    <input type="text" placeholder="user name" name="userName" formControlName="userName" />
+    <ng-container *ngIf="this.registerForm.controls['userName'].errors&&this.registerForm.controls['userName'].touched">
+        <div
+            *ngIf="!registerForm.controls['userName'].errors['required']&&!registerForm.controls['userName'].errors['minLength']">
+            you must enter at least 3 charcters
+        </div>
+        <div
+        *ngIf="registerForm.controls['userName'].errors['required']">
+    this field is required</div>
+    </ng-container>
+    <label for="password">Password</label>
+    <input type="password" placeholder="password" name="password" formControlName="password" />
+    <ng-container *ngIf="this.registerForm.controls['password'].errors&&this.registerForm.controls['password'].touched">
+        <div
+            *ngIf="!registerForm.controls['password'].errors['required']&&!registerForm.controls['password'].errors['minLength']">
+            you must enter at least 3 charcters
+        </div>
+        <div
+        *ngIf="registerForm.controls['password'].errors['required']">
+    this field is required</div>
+    </ng-container>
+    
+    <label for="address">User Address</label>
+    <input type="text" placeholder="address" name="address" formControlName="address" />
+    <label for="email">User Email</label>
+    <input type="email" placeholder="email" name="email" formControlName="email" />
+    <ng-container *ngIf="this.registerForm.controls['email'].errors&&this.registerForm.controls['email'].touched">
+        <div
+        *ngIf="registerForm.controls['email'].errors['email']">
+    this is invalid email</div>
+    </ng-container>
+    <br/>
+
+    <button type="submit" (click)="registerUser()" [disabled]="!registerForm.valid">Save</button>
+</form> -->

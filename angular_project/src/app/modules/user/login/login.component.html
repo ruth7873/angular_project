@@ -1,0 +1,63 @@
+<form *ngIf="this.loginForm" [formGroup]="loginForm" class="center-form ">
+    <div class="example-container">
+        <mat-form-field>
+            <mat-label>User Name</mat-label>
+            <input matInput type="text" placeholder="user name" formControlName="userName">
+        </mat-form-field>
+        <ng-container *ngIf="loginForm.controls['userName'].errors && loginForm.controls['userName'].touched">
+            <div *ngIf="!loginForm.controls['userName'].errors['required'] && !loginForm.controls['userName'].errors['minLength']"
+                style="color: red;">
+                You must enter at least 3 characters
+            </div>
+            <div *ngIf="loginForm.controls['userName'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+        </ng-container>
+        <br>
+        <mat-form-field>
+            <mat-label>Password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="password" formControlName="password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [disabled]="loginForm.controls['password'].errors" [attr.aria-label]="'הסתר סיסמה'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        <ng-container *ngIf="loginForm.controls['password'].errors && loginForm.controls['password'].touched">
+            <div *ngIf="!loginForm.controls['password'].errors['required'] && !loginForm.controls['password'].errors['minLength']"
+                style="color: red;">
+                You must enter at least 3 characters
+            </div>
+            <div *ngIf="loginForm.controls['password'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+        </ng-container>
+    </div>
+
+    <br />
+    <button mat-fab extended type="submit" (click)="loginUser()" [disabled]="!loginForm.valid">
+        <mat-icon>login</mat-icon>
+        Login
+    </button>
+</form>
+<!-- <label for="userName">User Name</label>
+      <input type="text" placeholder="user name" name="userName" formControlName="userName" />
+      <ng-container *ngIf="this.loginForm.controls['userName'].errors&&this.loginForm.controls['userName'].touched">
+          <div
+              *ngIf="!loginForm.controls['userName'].errors['required']&&!loginForm.controls['userName'].errors['minLength']">
+              you must enter at least 3 charcters
+          </div>
+          <div
+          *ngIf="loginForm.controls['userName'].errors['required']">
+      this field is required</div>
+      </ng-container>
+      <label for="password">Password</label>
+      <input type="password" placeholder="password" name="password" formControlName="password" />
+      <ng-container *ngIf="this.loginForm.controls['password'].errors&&this.loginForm.controls['password'].touched">
+          <div
+              *ngIf="!loginForm.controls['password'].errors['required']&&!loginForm.controls['password'].errors['minLength']">
+              you must enter at least 3 charcters
+          </div>
+          <div
+          *ngIf="loginForm.controls['password'].errors['required']">
+      this field is required</div>
+      </ng-container> -->
