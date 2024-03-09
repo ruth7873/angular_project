@@ -8,9 +8,10 @@ import { HttpClientModule } from "@angular/common/http";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
+import { CourseModule } from "./modules/course/course.module";
 @NgModule({
     declarations:[AppComponent],
-    imports:[BrowserModule,FormsModule,ReactiveFormsModule,HttpClientModule,AppRoutingModule,MatFormFieldModule,MatIconModule],
+    imports:[BrowserModule,FormsModule,ReactiveFormsModule,HttpClientModule,AppRoutingModule,MatFormFieldModule,MatIconModule,CourseModule],
     bootstrap:[AppComponent],
     providers: [
       provideAnimationsAsync()

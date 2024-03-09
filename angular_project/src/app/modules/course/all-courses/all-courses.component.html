@@ -1,1 +1,17 @@
+<!-- <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.picshare.co.il%2Fs_pictures%2Fimg76738.jpg&tbnid=Qu3zYa1Ht4aqTM&vet=1&imgrefurl=https%3A%2F%2Fwww.picshare.co.il%2Fgallery.asp%3Fpage%3D1%26subject%3D5%26sub_subject%3D14&docid=niEkInIvcmO7TM&w=800&h=451&source=sh%2Fx%2Fim%2Fm1%2F1&kgs=342513b36b8c2d7b&shem=trie" alt="img"> -->
+
 <p>all-courses works!</p>
+<ul>
+    <li *ngFor="let course of courses">
+        <div>{{course.id}}</div>
+        <div>{{course.name}}</div>
+        <button (click)="showDetailes(course)">More Detailes</button>
+        <!-- <img src={{course.image}}> -->
+    </li>
+</ul>
+<!-- <ul class="list-group">
+    <li *ngFor="let course of courses" class="list-group-item">
+        <div class="row">
+            <div class="col-1 form-group"></div>
+            <div class="col-1 form-group">{{course.id}}:</div>
+            <div class="col-2 form-group">{{course.name}} -->
