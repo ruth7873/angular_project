@@ -24,7 +24,7 @@ export class LogoutComponent implements OnInit {
       confirmButtonText: "Yes, log out!"
     }).then((result) => {
       if (result.isConfirmed) {
-        localStorage.removeItem("user")
+        sessionStorage.removeItem("user")
         this.router.navigate(['/user/login'])
         Swal.fire({
           title: "Goodbye!",
@@ -34,8 +34,4 @@ export class LogoutComponent implements OnInit {
       }
     });
   }
-logOut(){
-  
-
-}
 }

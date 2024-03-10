@@ -1,1 +1,98 @@
-<p>add-course works!</p>
+<form *ngIf="this.courseForm" [formGroup]="courseForm">
+    <div class="example-container">
+        <mat-form-field>
+            <mat-label>Course Title</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <ng-container *ngIf="courseForm.controls['name'].errors && courseForm.controls['name'].touched">
+            <div *ngIf="courseForm.controls['name'].errors['required']" style="color: red;">
+                This field is required
+            </div>
+        </ng-container>
+        <br>
+        <mat-form-field>
+            <mat-label>Description</mat-label>
+            <input matInput type="text" formControlName="description">
+            <ng-container
+                *ngIf="courseForm.controls['description'].errors && courseForm.controls['description'].touched">
+                <div *ngIf="courseForm.controls['description'].errors['required']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Category</mat-label>
+            <select matNativeControl formControlName="categoryId" (change)="onSelectionCatogoryChanged($event)">
+                <option *ngFor="let category of categories" [value]="category.id">
+                    {{ category.name }}
+                </option>
+            </select>
+        </mat-form-field>
+        <ng-container *ngIf="courseForm.controls['categoryId'].errors && courseForm.controls['categoryId'].touched"
+            style="color: red;">
+            <div *ngIf="courseForm.controls['categoryId'].errors['required']">
+                This field is required
+            </div>
+        </ng-container>
+        <br>
+        <mat-form-field>
+            <mat-label>Course Duration</mat-label>
+            <input matInput type="number" formControlName="amount">
+            <ng-container *ngIf="courseForm.controls['amount'].errors && courseForm.controls['amount'].touched">
+                <div *ngIf="!courseForm.controls['amount'].errors['required'] && !courseForm.controls['amount'].errors['minLength']"
+                    style="color: red;">
+                    Course Duration must be at least 3 sessions
+                </div>
+                <div *ngIf="courseForm.controls['amount'].errors['required']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input matInput type="date" formControlName="beginDate">
+            <ng-container *ngIf="courseForm.controls['beginDate'].errors && courseForm.controls['beginDate'].touched">
+                <div *ngIf="courseForm.controls['beginDate'].errors['required']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
+        </mat-form-field>
+        <div>
+            <mat-label>Learning format:</mat-label>
+            <mat-radio-group formControlName="learningType">
+                <mat-radio-button value="1">Frontal</mat-radio-button>
+                <mat-radio-button value="2">Digital</mat-radio-button>
+            </mat-radio-group>
+        </div>
+        <mat-form-field>
+            <mat-label>Image URL</mat-label>
+            <input matInput type="text" formControlName="image">
+            <ng-container *ngIf="courseForm.controls['image'].errors && courseForm.controls['image'].touched">
+                <div *ngIf="courseForm.controls['image'].errors['image']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
+        </mat-form-field>
+        <br>
+        <mat-form-field>
+            <mat-label>Syllabus</mat-label>
+            <input (change)="addInput(syllabusControl)" matInput type="text" [formControl]="syllabusControl">
+          </mat-form-field>
+          
+          <div *ngFor="let input of inputArray; let i = index">
+            <mat-form-field>
+              <mat-label>Syllabus {{ i + 1 }}</mat-label>
+              <input  (change)="addInput(inputArrayControls[i])" matInput type="text" [formControl]="inputArrayControls[i]">
+            </mat-form-field>
+          </div>
+          
+        </div>
+
+
+    <button mat-fab extended type="submit" (click)="addCourse()" [disabled]="!courseForm.valid">
+        <mat-icon>save</mat-icon>
+        Save
+    </button>
+</form>

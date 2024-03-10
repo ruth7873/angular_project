@@ -13,16 +13,14 @@ import Swal from 'sweetalert2';
   styleUrl: './register.component.scss'
 })
 export class RegisterComponent {
-  constructor(private _userService: UserService, private router: ActivatedRoute) {
+  constructor(private _userService: UserService, private router: Router) {
     this.user = new User();
   }
   ngOnInit(): void {
-    if (localStorage.getItem("user") != null) {
-      let x = localStorage.getItem("user")
+    if (sessionStorage.getItem("user") != null) {
+      let x = sessionStorage.getItem("user")
       if (x != null)
         console.log(x);
-
-
     }
     // this.router.paramMap.subscribe(params => {
     //   if (params)
@@ -31,15 +29,15 @@ export class RegisterComponent {
     // })
   }
   hide: boolean = true;
-  registerForm!: FormGroup;
-  private _user: User | null = new User();
-  public get user(): User | null {
+  registerForm: FormGroup;
+  private _user: User = new User();
+  public get user(): User {
     return this._user;
   }
   @Input()
   public set user(value: User) {
     var userName=""
-    const u = localStorage.getItem("user");
+    const u = sessionStorage.getItem("user");
     if (u) {
       const us = JSON.parse(u);
       userName = us.userName;
@@ -59,11 +57,13 @@ export class RegisterComponent {
     this.user = this.registerForm.value;
     console.log(this.user);
     this._userService.addUserToServer(this.user).subscribe(() => 
-      Swal.fire({
+   {   Swal.fire({
         title: `Hi ${this.user?.userName}`,
         text: "You have successfully registered!!!",
         icon: "success"
       })
+      this.router.navigate(['/courses'])
+    }
     )
   }
 }

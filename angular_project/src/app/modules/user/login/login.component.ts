@@ -49,12 +49,12 @@ export class LoginComponent implements OnInit {
             text: "You've logged in successfully!",
             icon: "success"
           });
-          localStorage.setItem("user", JSON.stringify(currentUser))
-          this.router.navigate(['/course'])
+          sessionStorage.setItem("user", JSON.stringify(currentUser))
+          this.router.navigate(['/courses'])
         }
       }
       else {
-        localStorage.setItem("user", JSON.stringify(this.user))
+        sessionStorage.setItem("user", JSON.stringify(this.user))
         this.router.navigate(['/user/register', { user: this.user.userName }])
       }
 
