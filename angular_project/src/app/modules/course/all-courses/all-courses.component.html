@@ -1,14 +1,22 @@
-<!-- <img src="https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.picshare.co.il%2Fs_pictures%2Fimg76738.jpg&tbnid=Qu3zYa1Ht4aqTM&vet=1&imgrefurl=https%3A%2F%2Fwww.picshare.co.il%2Fgallery.asp%3Fpage%3D1%26subject%3D5%26sub_subject%3D14&docid=niEkInIvcmO7TM&w=800&h=451&source=sh%2Fx%2Fim%2Fm1%2F1&kgs=342513b36b8c2d7b&shem=trie" alt="img"> -->
+<mat-card class="example-card" *ngFor="let course of courses">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{course?.name}}</mat-card-title>
+        <mat-card-subtitle>{{categories[course?.categoryId].name}}
+            <mat-icon>{{categories[course?.categoryId].iconRouting}}</mat-icon>
+        </mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image src={{course?.image}} alt="Photo of a camera">
+    <mat-card-actions>
+        <mat-icon>arrow_forward</mat-icon>
+        <button mat-button (click)="showDetailes(course)" >More Detailes</button>
+        <mat-icon>edit</mat-icon>
+        <button mat-button (click)="showDetailes(course)" >Edit</button>
+        <mat-icon>delete</mat-icon>
+        <button mat-button (click)="showDetailes(course)" >Delete</button>
+    </mat-card-actions>
+</mat-card>
 
-<p>all-courses works!</p>
-<ul>
-    <li *ngFor="let course of courses">
-        <div>{{course.id}}</div>
-        <div>{{course.name}}</div>
-        <button (click)="showDetailes(course)">More Detailes</button>
-        <!-- <img src={{course.image}}> -->
-    </li>
-</ul>
 <!-- <ul class="list-group">
     <li *ngFor="let course of courses" class="list-group-item">
         <div class="row">

@@ -5,15 +5,10 @@ import { CourseDetailesComponent } from "./course-detailes/course-detailes.compo
 import { AddCourseComponent } from "./add-course/add-course.component";
 
 const APP_ROUTES: Route[] = [
-    { path: "", component:AllCoursesComponent },
+    { path: "courses", component:AllCoursesComponent },
     { path: "detailes/:id", component:CourseDetailesComponent },
     { path: "add", component:AddCourseComponent },
     { path: "edit", component:AddCourseComponent },
-
-
-
-
-
 ]
 @NgModule({
     imports:[RouterModule.forChild(APP_ROUTES)],

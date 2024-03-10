@@ -1,18 +1,22 @@
-<p>course-detailes works!</p>
-
-<div>{{course?.name}}</div>
-
 <mat-card class="example-card">
     <mat-card-header>
         <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{course.name}}</mat-card-title>
-        <mat-card-subtitle>{{course.categoryId}}</mat-card-subtitle>
+        <mat-card-title>{{course?.name}}</mat-card-title>
+        <mat-card-subtitle>{{category?.name}}
+            <mat-icon>{{category?.iconRouting}}</mat-icon>
+        </mat-card-subtitle>
     </mat-card-header>
-    <img mat-card-image src="../images/camera.jpg" alt="Photo of a Shiba Inu">
+    <p><b>Number of lessons:</b> {{course?.amount}} | <b>Learning format:</b> {{learnType[course?.learningType]}}</p>
+    <p><b>Start Date:</b> {{ course?.beginDate}}</p>
+    <b>Course lecturer: {{course?.lecturerId}}</b>
+    <img mat-card-image src={{course?.image}} alt="Photo of a camera">
     <mat-card-content>
-        <p *ngFor="let line of course.syllabus">
-            {{line}}
-        </p>
+        <h2>{{course?.syllabus[0]}}</h2>
+        <div *ngFor="let line of course?.syllabus">
+            <h4 *ngIf="line.startsWith('Unit')">{{line}}</h4>
+
+            <li *ngIf="!line.startsWith('Unit')&&line!=course?.syllabus[0]">{{line}}</li>
+        </div>
     </mat-card-content>
     <mat-card-actions>
         <button mat-button>LIKE</button>
