@@ -62,8 +62,8 @@
         <div>
             <mat-label>Learning format:</mat-label>
             <mat-radio-group formControlName="learningType">
-                <mat-radio-button value="1">Frontal</mat-radio-button>
-                <mat-radio-button value="2">Digital</mat-radio-button>
+                <mat-radio-button value=0>Frontal</mat-radio-button>
+                <mat-radio-button value=1>Digital</mat-radio-button>
             </mat-radio-group>
         </div>
         <mat-form-field>
@@ -76,15 +76,10 @@
             </ng-container>
         </mat-form-field>
         <br>
-        <mat-form-field>
-            <mat-label>Syllabus</mat-label>
-            <input (change)="addInput(syllabusControl)" matInput type="text" [formControl]="syllabusControl">
-          </mat-form-field>
-          
           <div *ngFor="let input of inputArray; let i = index">
             <mat-form-field>
               <mat-label>Syllabus {{ i + 1 }}</mat-label>
-              <input  (change)="addInput(inputArrayControls[i])" matInput type="text" [formControl]="inputArrayControls[i]">
+              <input  (change)="addInput(inputArrayControls[i],i)" matInput type="text" [formControl]="inputArrayControls[i]">
             </mat-form-field>
           </div>
           
