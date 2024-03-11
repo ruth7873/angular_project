@@ -20,22 +20,18 @@ export class CourseDetailesComponent implements OnInit {
   }
   course: Course;
   category: Category;
-  learnType=LearningType
+  learnType = LearningType
   ngOnInit(): void {
-    let id: number;
-    this._acr.paramMap.subscribe(p => {
-      if (p && p.has("id"))
-        id = +(p.get("id")!);
-      this._courseService.getCourses().subscribe(d =>
-        this.course = d.find(x => x.id == id))
+    let c: Course;
+    {
+      const course =sessionStorage.getItem("course")
+      console.log(course);
+      c = JSON.parse(course)
+      this.course = c;
       this._categoryService.getCategories().subscribe(d => {
         if (d)
           this.category = d.find(x => x.id == this.course.categoryId)
       }
-      )
-    })
-
-    // this._courseService.getCourseById(id).subscribe(data=>
-    //   this.course=data)
+      )}
   }
 }

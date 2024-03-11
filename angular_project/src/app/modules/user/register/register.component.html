@@ -36,12 +36,11 @@
         <mat-form-field>
             <mat-label>User Address</mat-label>
             <input matInput type="text" placeholder="address" formControlName="address">
-        <ng-container *ngIf="registerForm.controls['address'].errors && registerForm.controls['address'].touched">
-            <div *ngIf="registerForm.controls['address'].errors['required']" style="color: red;">
-                This field is required
-            </div>
-        </ng-container>
-
+            <ng-container *ngIf="registerForm.controls['address'].errors && registerForm.controls['address'].touched">
+                <div *ngIf="registerForm.controls['address'].errors['required']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
         </mat-form-field>
         <br>
         <mat-form-field>
@@ -56,13 +55,22 @@
             <div *ngIf="registerForm.controls['email'].errors['required']" style="color: red;">
                 This field is required
             </div>
-
         </ng-container>
         <br>
+        <mat-form-field *ngIf="isLecturer">
+            <mat-label>Course</mat-label>
+            <input matInput type="text" formControlName="course">
+            <ng-container *ngIf="registerForm.controls['course'].errors && registerForm.controls['course'].touched">
+                <div *ngIf="registerForm.controls['course'].errors['required']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
+        </mat-form-field>
     </div>
     <br />
     <button mat-fab extended type="submit" (click)="registerUser()" [disabled]="!registerForm.valid">
         <mat-icon>login</mat-icon>
         Login
     </button>
+    <a (click)="lecturer()">to lecturer</a>
 </form>

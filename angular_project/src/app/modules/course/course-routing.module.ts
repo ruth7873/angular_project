@@ -6,7 +6,7 @@ import { AddCourseComponent } from "./add-course/add-course.component";
 
 const APP_ROUTES: Route[] = [
     { path: "courses", component:AllCoursesComponent },
-    { path: "detailes/:id", component:CourseDetailesComponent },
+    { path: "detailes", component:CourseDetailesComponent },
     { path: "add", component:AddCourseComponent },
     { path: "edit", component:AddCourseComponent },
 ]

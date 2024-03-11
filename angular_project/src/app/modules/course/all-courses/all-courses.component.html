@@ -8,22 +8,16 @@
         </mat-card-subtitle>
     </mat-card-header>
     <img mat-card-image src={{course?.image}} alt="Photo of a camera">
-    <p [ngClass]="{'date': course?.beginDate < nextWeekDate}">
+    <p [ngClass]="getCssClass(this.course)">
         {{ course?.beginDate }}
-      </p>           
+      </p>
     <mat-card-actions>
         <mat-icon>arrow_forward</mat-icon>
         <button mat-button (click)="showDetailes(course)" >More Detailes</button>
         <mat-icon>edit</mat-icon>
         <button mat-button (click)="editCourse(course)" >Edit</button>
-        <mat-icon>delete</mat-icon>
-        <button mat-button (click)="deleteCourse(course.id)" >Delete</button>
+        <!-- <mat-icon>delete</mat-icon> -->
+        <!-- <button mat-button (click)="deleteCourse(course.id)" >Delete</button> -->
     </mat-card-actions>
 </mat-card>
 </div>
-<!-- <ul class="list-group">
-    <li *ngFor="let course of courses" class="list-group-item">
-        <div class="row">
-            <div class="col-1 form-group"></div>
-            <div class="col-1 form-group">{{course.id}}:</div>
-            <div class="col-2 form-group">{{course.name}} -->

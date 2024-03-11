@@ -19,6 +19,12 @@ export class AllCoursesComponent implements OnInit {
   currentDate = new Date();
   nextWeekDateString = new Date(this.currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
   nextWeekDate = new Date(this.nextWeekDateString);
+  getCssClass(course) {
+    const dateString = course.beginDate;
+    const parts = dateString.split('-');
+    const dateObject = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+    return dateObject < this.nextWeekDateString ? 'date' : null;
+  }
   constructor(private _courseService: CourseService, private _categoryService: CategoryService, private _router: Router) {
   }
   ngOnInit(): void {
@@ -29,34 +35,35 @@ export class AllCoursesComponent implements OnInit {
     })
   }
   showDetailes(c: Course) {
-    this._router.navigate(["/detailes", c?.id])
+    sessionStorage.setItem("course",JSON.stringify(c))
+    this._router.navigate(["/detailes"])
   }
   editCourse(c: Course) {
+    this._router.navigate(['edit', c])
+  }
+  // deleteCourse(id: number) {
+  //   Swal.fire({
+  //     title: "Are you sure?",
+  //     text: "You won't be able to revert this!",
+  //     icon: "warning",
+  //     showCancelButton: true,
+  //     confirmButtonColor: "#3085d6",
+  //     cancelButtonColor: "#d33",
+  //     confirmButtonText: "Yes, delete!"
+  //   }).then((result) => {
+  //     if (result.isConfirmed) {
+  //       console.log(id);
+  //       this.courses.filter(x => x.id != id)
+  //       // this._courseService.deleteCourse(id).subscribe
+  //       //   (d => {
+  //       //     if (d)
+  //       Swal.fire({
+  //         title: "deleted!",
+  //         text: "The Course Deleted successfully!!!",
+  //         icon: "success"
+  //       })
 
-  }
-  deleteCourse(id: number) {
-    Swal.fire({
-      title: "Are you sure?",
-      text: "You won't be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete!"
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this._courseService.deleteCourse(id).subscribe
-          (d =>
-          // this.router.navigate(['/user/login'])
-          {
-            if (d)
-              Swal.fire({
-                title: "deleted!",
-                text: "The Course Deleted successfully!!!",
-                icon: "success"
-              })
-          })
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 }
