@@ -7,6 +7,7 @@ import { Category } from '../category.model';
 import { User } from '../../user/user.model';
 import Swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-add-course',
@@ -14,6 +15,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./add-course.component.scss']
 })
 export class AddCourseComponent implements OnInit {
+
   constructor(private _courseService: CourseService, private _categoryService: CategoryService, private router: Router) {
     const a = localStorage.getItem("course")
     localStorage.clear()
@@ -25,17 +27,17 @@ export class AddCourseComponent implements OnInit {
       console.log(this.course);
       this.selectedIndexCategory = c.categoryId
       this.inputArray = c.syllabus
-      this.course.id=c.id
-      this.isEdit=true
+      this.inputArray.push("")
+      this.course.id = c.id
+      this.isEdit = true
     }
     console.log(this.course);
-    if (this.course.id == null)
-    {
+    if (this.course.id == null) {
       this.course = new Course()
-      this.course.id=99999;
+      this.course.id = 99999;
     }
   }
-  isEdit:boolean=false
+  isEdit: boolean = false
   ngOnInit(): void {
     this._categoryService.getCategories().subscribe(d => { this.categories = d });
     this.inputArrayControls = this.inputArray.map(input => new FormControl(input));
@@ -46,7 +48,6 @@ export class AddCourseComponent implements OnInit {
   public get course(): Course {
     return this._course;
   }
-  // @Input()
   public set course(value: Course) {
     this._course = value;
     // if (this._course !== undefined) {
@@ -73,7 +74,7 @@ export class AddCourseComponent implements OnInit {
   addInput(control: FormControl, i: number) {
     i++;
 
-    if (this.changes[i] && this.inputArray[i] !== control.value) {
+    if (this.changes[i] && this.inputArray[i] !== control.value || this.isEdit == true) {
       // If the value at index i changed
       this.inputArray[i] = control.value;
 
@@ -89,7 +90,6 @@ export class AddCourseComponent implements OnInit {
         this.inputArrayControls[this.inputArrayControls.length - 1] = new FormControl('')
         // this.inputArrayControls.pop();
       }
-
       console.log("Value changed and updated");
     } else if (this.changes.length > i && !this.changes[i]) {
       // Add new input to the next field
@@ -99,13 +99,13 @@ export class AddCourseComponent implements OnInit {
 
       console.log("New input added");
     }
-
     console.log("The updated array:", this.inputArray);
     this.changes[i] = true;
   }
   addCourse() {
     this.inputArray.shift()
     console.log(this.inputArray);
+    this.courseForm.value.id=this.course.id
     this.course = this.courseForm.value;
     const u = sessionStorage.getItem("user")
     console.log(u);
@@ -116,22 +116,20 @@ export class AddCourseComponent implements OnInit {
     this.course.learningType = +(this.course.learningType);
     this.course.syllabus = this.inputArray;
     console.log(this.course);
-    if(!this.course.id)
-    this.course.id=99999
     this._courseService.addCourse(this.course).subscribe(d => {
       Swal.fire({
         title: `Well done!!! `,
         text: "The course was successfully added!",
         icon: "success"
       });
-      this.router.navigate(['/courses'])
+      this.router.navigate(['course/allCourses'])
     }
     )
     console.log(this.course);
     console.log(this.inputArray);
 
   }
-  unSaveCourse(){
-    this.router.navigate(['courses'])
+  unSaveCourse() {
+    this.router.navigate(['course/allCourses'])
   }
 } 

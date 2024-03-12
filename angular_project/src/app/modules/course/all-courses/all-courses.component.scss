@@ -1,25 +1,41 @@
-.example-card {
-    width: max-content;
-}
+// .example-card {
+//     width: max-content;
+// }
 
+// .cards {
+//     margin: 0 auto;
+//     display: flex;
+//     flex-direction: row;
+//     flex-wrap: wrap;
+//     justify-content: center;
+//     align-items: stretch;
+//     width: 500px;
+// }
 .cards {
-    // width: 100%;
     margin: 0 auto;
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
-    justify-content: center;
+    justify-content: space-between;
     align-items: stretch;
-    width: 500px;
+    max-width: 90vw; /* Adjust the max-width as needed */
 }
 .example-card{
-    width: 100%;
+    width: 350px;
     margin: 25px;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center
 }
+// .example-card {
+//     width: 350px;
+//     margin: 25px;
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-evenly;
+//     align-items: center;
+//     flex: 1 0 350px; /* This allows the cards to wrap to a new row when the space runs out */
+// }
 
 .date {
     color: red;

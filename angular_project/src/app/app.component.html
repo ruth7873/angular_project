@@ -1,10 +1,32 @@
   <mat-icon (click)="scrollToBottom()" class="arrow"  @scrollAnimation>keyboard_arrow_down</mat-icon>
   <mat-icon (click)="scrollToTop()" class="arrow" id="a"  @scrollAnimation>keyboard_arrow_up</mat-icon>
+<!-- 
+  <a routerLink="/user/login" class="nav-link">Log in</a>
+  <a routerLink="/user/register" class="nav-link">Register</a>
+  <a routerLink="/user/logout" class="nav-link">Log out</a>
+  <a routerLink="/courses" class="nav-link">All Courses</a>
+  <a routerLink="/course/add/" class="nav-link">Add Course</a> -->
 
-    <a routerLink="/user/login">Log in | </a>
-    <a routerLink="/user/register">Register | </a>
-    <a routerLink="/user/logout">Log out | </a>
-    <a routerLink="/courses">All Courses | </a>
-    <a routerLink="/course/add/">Add Course | </a> 
-
+  <!-- <button mat-button routerLink="/user/login">Log in</button>
+<button mat-button routerLink="/user/register">Register</button>
+<button mat-button routerLink="/user/logout">Log out</button>
+<button mat-button routerLink="/courses">All Courses</button>
+<button mat-button routerLink="/course/add">Add Course</button> -->
+<div id="links">
+<button mat-button routerLink="/user/login">
+  <mat-icon>login</mat-icon> Log in
+</button>
+<button mat-button routerLink="/user/register">
+  <mat-icon>person_add</mat-icon> Register
+</button>
+<button mat-button routerLink="course/allCourses">
+  <mat-icon>library_books</mat-icon> All Courses
+</button>
+<button mat-button routerLink="/course/add">
+  <mat-icon>add_circle</mat-icon> Add Course
+</button>
+<button mat-button routerLink="/user/logout">
+  <mat-icon>exit_to_app</mat-icon> Log out
+</button>
+</div>
 <router-outlet></router-outlet>

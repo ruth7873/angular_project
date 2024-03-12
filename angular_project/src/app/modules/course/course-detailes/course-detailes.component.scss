@@ -1,9 +1,11 @@
 .example-card {
-    max-width: 400px;
-  }
-  
-  .example-header-image {
-    background-image: url('https://www.google.com/imgres?imgurl=https%3A%2F%2Fwww.picshare.co.il%2Fs_pictures%2Fimg76738.jpg&tbnid=Qu3zYa1Ht4aqTM&vet=12ahUKEwjB1Y-ApOiEAxXNcqQEHV5bCk0QMygDegQIARBQ..i&imgrefurl=https%3A%2F%2Fwww.picshare.co.il%2Fgallery.asp%3Fpage%3D1%26subject%3D5%26sub_subject%3D14&docid=niEkInIvcmO7TM&w=800&h=451&q=%D7%AA%D7%9E%D7%95%D7%A0%D7%94%20%D7%A9%D7%9C%20%D7%9E%D7%A6%D7%9C%D7%9E%D7%94&safe=active&ved=2ahUKEwjB1Y-ApOiEAxXNcqQEHV5bCk0QMygDegQIARBQ');
-    background-size: cover;
-  }
-  
+  max-width: 400px;
+}
+
+#aaa {
+  display: flex;
+  justify-content: center;
+  margin-top: 5%;
+  opacity: 0.7;
+
+}

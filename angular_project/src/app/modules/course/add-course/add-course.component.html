@@ -14,13 +14,13 @@
         <mat-form-field>
             <mat-label>Description</mat-label>
             <input matInput type="text" formControlName="description">
+        </mat-form-field>
             <ng-container
                 *ngIf="courseForm.controls['description'].errors && courseForm.controls['description'].touched">
                 <div *ngIf="courseForm.controls['description'].errors['required']" style="color: red;">
                     This field is required
                 </div>
             </ng-container>
-        </mat-form-field>
         <br>
         <mat-form-field>
             <mat-label>Category</mat-label>
@@ -40,6 +40,7 @@
         <mat-form-field>
             <mat-label>Course Duration</mat-label>
             <input matInput type="number" formControlName="amount">
+        </mat-form-field>
             <ng-container *ngIf="courseForm.controls['amount'].errors && courseForm.controls['amount'].touched">
                 <div *ngIf="!courseForm.controls['amount'].errors['required'] && !courseForm.controls['amount'].errors['minLength']"
                     style="color: red;">
@@ -49,45 +50,35 @@
                     This field is required
                 </div>
             </ng-container>
-        </mat-form-field>
         <br>
-        <!-- <mat-form-field>
-            <mat-label>Start Date</mat-label>
-            <input matInput type="date" formControlName="beginDate">
-            <ng-container *ngIf="courseForm.controls['beginDate'].errors && courseForm.controls['beginDate'].touched">
-                <div *ngIf="courseForm.controls['beginDate'].errors['required']" style="color: red;">
-                    This field is required
-                </div>
-            </ng-container>
-        </mat-form-field> -->
+
         <mat-form-field>
             <mat-label>Start Date</mat-label>
             <input matInput [matDatepicker]="picker" formControlName="beginDate">
             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
             <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
             <ng-container *ngIf="courseForm.controls['beginDate'].errors && courseForm.controls['beginDate'].touched">
                 <div *ngIf="courseForm.controls['beginDate'].errors['required']" style="color: red;">
                     This field is required
                 </div>
             </ng-container>
-        </mat-form-field>
         <div>
-
             <mat-label>Learning format:</mat-label>
             <mat-radio-group formControlName="learningType">
-                <mat-radio-button [value]="0" [checked]="this.course.learningType === 1">Frontal</mat-radio-button>
-                <mat-radio-button [value]="1" [checked]="this.course.learningType === 2">Digital</mat-radio-button>
+                <mat-radio-button [value]="1" [checked]="this.course.learningType === 1">Frontal</mat-radio-button>
+                <mat-radio-button [value]="2" [checked]="this.course.learningType === 2">Digital</mat-radio-button>
             </mat-radio-group>
         </div>
         <mat-form-field>
             <mat-label>Image URL</mat-label>
             <input matInput type="text" formControlName="image">
+        </mat-form-field>
             <ng-container *ngIf="courseForm.controls['image'].errors && courseForm.controls['image'].touched">
-                <div *ngIf="courseForm.controls['image'].errors['image']" style="color: red;">
+                <div *ngIf="courseForm.controls['image'].errors['required']" style="color: red;">
                     This field is required
                 </div>
             </ng-container>
-        </mat-form-field>
         <br>
         <div *ngFor="let input of inputArray; let i = index">
             <mat-form-field>

@@ -32,6 +32,9 @@ export class LogoutComponent implements OnInit {
           icon: "success"
         });
       }
+      else
+      this.router.navigate(['course/allCourses'])
+
     });
   }
 }

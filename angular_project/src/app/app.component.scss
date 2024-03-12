@@ -1,13 +1,41 @@
 .arrow {
     border-radius: 50%;
     position: fixed;
-    bottom: 20px; /* המרחק מהתחתית */
-    right: 20px; /* המרחק מהצד הימני */
-    background-color: #bfddeb; /* צבע רקע */
-    padding: 8px; /* מרווח פנימי */
-    cursor: pointer; /* עכבר מרהיב */
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* צללייה */
+    bottom: 20px;
+    /* המרחק מהתחתית */
+    right: 20px;
+    /* המרחק מהצד הימני */
+    background-color: #bfddeb;
+    /* צבע רקע */
+    padding: 8px;
+    /* מרווח פנימי */
+    cursor: pointer;
+    /* עכבר מרהיב */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    /* צללייה */
 }
-#a{
+
+#a {
     right: 75px;
+}
+
+.mat-button {
+    // background-color: #4CAF50;
+    color: white;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.mat-button:hover {
+    // background-color: #388E3C;
+    color: white;
+}
+
+#links {
+    display: flex;
+    justify-content: space-evenly;
 }

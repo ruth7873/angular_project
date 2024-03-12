@@ -51,7 +51,7 @@ export class LoginComponent implements OnInit {
           });
           sessionStorage.setItem("IsLecturer", JSON.stringify(currentUser?.IsLecturer))
           sessionStorage.setItem("user", JSON.stringify(currentUser))
-          this.router.navigate(['/courses'])
+          this.router.navigate(['course/allCourses'])
         }
       }
       else {
