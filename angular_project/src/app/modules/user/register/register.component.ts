@@ -53,6 +53,7 @@ export class RegisterComponent {
         address: new FormControl(this.user.address, [Validators.required]),
         email: new FormControl(this.user.email, [Validators.required, Validators.email]),
         password: new FormControl(this.user.password, [Validators.required, Validators.minLength(3)]),
+        course:new FormControl(this.user.course,[])
       })
     }
   }
@@ -65,7 +66,7 @@ export class RegisterComponent {
         text: "You have successfully registered!!!",
         icon: "success"
       })
-      this.router.navigate(['/courses'])
+      this.router.navigate(['/user/login'])
     }
     )
   }

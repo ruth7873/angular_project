@@ -15,19 +15,27 @@ import { Router } from '@angular/router';
 })
 export class AddCourseComponent implements OnInit {
   constructor(private _courseService: CourseService, private _categoryService: CategoryService, private router: Router) {
-    const a = sessionStorage.getItem("course")
+    const a = localStorage.getItem("course")
+    localStorage.clear()
     let c: Course
     if (a) {
       c = JSON.parse(a)
-      this.course=c
+      this.course = c
       this.course.syllabus = c.syllabus
       console.log(this.course);
-      this.selectedIndexCategory=c.categoryId
-      this.inputArray=c.syllabus
+      this.selectedIndexCategory = c.categoryId
+      this.inputArray = c.syllabus
+      this.course.id=c.id
+      this.isEdit=true
     }
-    else
+    console.log(this.course);
+    if (this.course.id == null)
+    {
       this.course = new Course()
+      this.course.id=99999;
+    }
   }
+  isEdit:boolean=false
   ngOnInit(): void {
     this._categoryService.getCategories().subscribe(d => { this.categories = d });
     this.inputArrayControls = this.inputArray.map(input => new FormControl(input));
@@ -41,20 +49,18 @@ export class AddCourseComponent implements OnInit {
   // @Input()
   public set course(value: Course) {
     this._course = value;
-
-    if (this._course !== undefined) {
-      this.courseForm = new FormGroup({
-        name: new FormControl(this.course.name, [Validators.required]),
-        description: new FormControl(this.course.description, [Validators.required]),
-        categoryId: new FormControl(this.selectedIndexCategory),
-        amount: new FormControl(this.course.amount, [Validators.required, Validators.min(3)]),
-        beginDate: new FormControl(this.course.beginDate, [Validators.required]),
-        learningType: new FormControl(this.course.learningType, [Validators.required]),
-        image: new FormControl(this.course.image, [Validators.required]),
-        lecturerId: new FormControl(this.course.lecturerId)
-        // syllabus:new FormControl(this.inputArrayControls,[Validators.required])
-      });
-    }
+    // if (this._course !== undefined) {
+    this.courseForm = new FormGroup({
+      name: new FormControl(this.course.name, [Validators.required]),
+      description: new FormControl(this.course.description, [Validators.required]),
+      categoryId: new FormControl(this.course.categoryId),
+      amount: new FormControl(this.course.amount, [Validators.required, Validators.min(3)]),
+      beginDate: new FormControl(this.course.beginDate, [Validators.required]),
+      learningType: new FormControl(this.course?.learningType?.toString(), [Validators.required]),
+      image: new FormControl(this.course.image, [Validators.required]),
+      lecturerId: new FormControl(this.course.lecturerId)
+    });
+    // }
   }
   selectedIndexCategory: number
   public onSelectionCatogoryChanged(event: any): void {
@@ -107,9 +113,11 @@ export class AddCourseComponent implements OnInit {
       let user: User = JSON.parse(u)
       this.course.lecturerId = user.id;
     }
-    this.course.id = 1;
     this.course.learningType = +(this.course.learningType);
     this.course.syllabus = this.inputArray;
+    console.log(this.course);
+    if(!this.course.id)
+    this.course.id=99999
     this._courseService.addCourse(this.course).subscribe(d => {
       Swal.fire({
         title: `Well done!!! `,
@@ -117,11 +125,13 @@ export class AddCourseComponent implements OnInit {
         icon: "success"
       });
       this.router.navigate(['/courses'])
-
     }
     )
     console.log(this.course);
     console.log(this.inputArray);
 
+  }
+  unSaveCourse(){
+    this.router.navigate(['courses'])
   }
 } 

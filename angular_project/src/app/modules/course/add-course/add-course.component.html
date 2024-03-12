@@ -10,6 +10,7 @@
             </div>
         </ng-container>
         <br>
+
         <mat-form-field>
             <mat-label>Description</mat-label>
             <input matInput type="text" formControlName="description">
@@ -50,7 +51,7 @@
             </ng-container>
         </mat-form-field>
         <br>
-        <mat-form-field>
+        <!-- <mat-form-field>
             <mat-label>Start Date</mat-label>
             <input matInput type="date" formControlName="beginDate">
             <ng-container *ngIf="courseForm.controls['beginDate'].errors && courseForm.controls['beginDate'].touched">
@@ -58,12 +59,24 @@
                     This field is required
                 </div>
             </ng-container>
+        </mat-form-field> -->
+        <mat-form-field>
+            <mat-label>Start Date</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="beginDate">
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+            <ng-container *ngIf="courseForm.controls['beginDate'].errors && courseForm.controls['beginDate'].touched">
+                <div *ngIf="courseForm.controls['beginDate'].errors['required']" style="color: red;">
+                    This field is required
+                </div>
+            </ng-container>
         </mat-form-field>
         <div>
+
             <mat-label>Learning format:</mat-label>
             <mat-radio-group formControlName="learningType">
-                <mat-radio-button value=0>Frontal</mat-radio-button>
-                <mat-radio-button value=1>Digital</mat-radio-button>
+                <mat-radio-button [value]="0" [checked]="this.course.learningType === 1">Frontal</mat-radio-button>
+                <mat-radio-button [value]="1" [checked]="this.course.learningType === 2">Digital</mat-radio-button>
             </mat-radio-group>
         </div>
         <mat-form-field>
@@ -76,16 +89,18 @@
             </ng-container>
         </mat-form-field>
         <br>
-          <div *ngFor="let input of inputArray; let i = index">
+        <div *ngFor="let input of inputArray; let i = index">
             <mat-form-field>
-              <mat-label>Syllabus {{ i + 1 }}</mat-label>
-              <input  (change)="addInput(inputArrayControls[i],i)" matInput type="text" [formControl]="inputArrayControls[i]">
+                <mat-label>Syllabus {{ i + 1 }}</mat-label>
+                <input (change)="addInput(inputArrayControls[i],i)" matInput type="text"
+                    [formControl]="inputArrayControls[i]">
             </mat-form-field>
-          </div>
-          
         </div>
-
-
+    </div>
+    <button *ngIf="this.isEdit" mat-fab extended type="submit" (click)="unSaveCourse()" >
+        <mat-icon>undo</mat-icon>
+        UnSave
+    </button>
     <button mat-fab extended type="submit" (click)="addCourse()" [disabled]="!courseForm.valid">
         <mat-icon>save</mat-icon>
         Save

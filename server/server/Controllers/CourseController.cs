@@ -32,7 +32,23 @@ namespace server.Controllers
         [HttpPost]
         public void Post([FromBody] Course value)
         {
-            courses.Add(new Course(value.Name,value.Description,value.CategoryId,value.Amount,value.BeginDate,value.Syllabus,value.LearningType,value.LecturerId,value.Image));
+            var course = courses.Find(x => x.Id == value.Id);
+            if (course != null)
+            {
+                course.LecturerId = value.LecturerId;
+                course.Image = value.Image;
+                course.Name = value.Name;
+                course.Amount = value.Amount;
+                course.BeginDate = value.BeginDate;
+                course.CategoryId = value.CategoryId;
+                course.LearningType = value.LearningType;
+                course.Syllabus = value.Syllabus;
+            }
+            else
+            {
+                courses.Add(new Course(value.Name, value.Description, value.CategoryId, value.Amount, value.BeginDate, value.Syllabus, value.LearningType, value.LecturerId, value.Image));
+            }
+            //courses.Add(new Course(value.Name,value.Description,value.CategoryId,value.Amount,value.BeginDate,value.Syllabus,value.LearningType,value.LecturerId,value.Image));
         }
 
         // PUT api/<CourseController>/5
@@ -51,7 +67,10 @@ namespace server.Controllers
                 course.LearningType=value.LearningType;
                 course.Syllabus=value.Syllabus;
             }
-
+            else
+            {
+                courses.Add(new Course(value.Name, value.Description, value.CategoryId, value.Amount, value.BeginDate, value.Syllabus, value.LearningType, value.LecturerId, value.Image));
+            }
         }
 
         // DELETE api/<CourseController>/5

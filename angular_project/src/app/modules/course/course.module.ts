@@ -13,12 +13,14 @@ import { CategoryService } from "./category.service";
 import { MatIconModule } from "@angular/material/icon";
 import { MatFormFieldModule, MatLabel } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
-import { MatOptionModule } from "@angular/material/core";
+import { MatNativeDateModule, MatOptionModule } from "@angular/material/core";
 import { MatRadioModule } from '@angular/material/radio';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+
 
 @NgModule({
     declarations: [AllCoursesComponent, CourseDetailesComponent, AddCourseComponent],
-    imports: [CourseRoutingModule, HttpClientModule, FormsModule,ReactiveFormsModule, CommonModule, MatCardModule, MatButtonModule,MatIconModule,MatFormFieldModule,MatInputModule,MatOptionModule,MatLabel,MatRadioModule],
+    imports: [CourseRoutingModule, HttpClientModule, FormsModule,ReactiveFormsModule, CommonModule, MatCardModule, MatButtonModule,MatIconModule,MatFormFieldModule,MatInputModule,MatOptionModule,MatLabel,MatRadioModule,MatDatepickerModule,MatNativeDateModule],
     providers: [CourseService,CategoryService],
     exports: [MatCardModule,MatButtonModule]
 })

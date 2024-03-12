@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
             text: "You've logged in successfully!",
             icon: "success"
           });
-          sessionStorage.setItem("IsLecturer", JSON.stringify(currentUser.IsLecturer))
+          sessionStorage.setItem("IsLecturer", JSON.stringify(currentUser?.IsLecturer))
           sessionStorage.setItem("user", JSON.stringify(currentUser))
           this.router.navigate(['/courses'])
         }

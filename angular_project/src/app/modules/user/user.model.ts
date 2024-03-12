@@ -4,7 +4,9 @@ export class User{
     address?:string;
     email?:string;
     password?:string;
-    IsLecturer:boolean
+    IsLecturer:boolean;
+    isLecturer:boolean
+    course:string;
 
 // constructor(id:number,password:string,fullname:string="",address:string="",email:string=""){
 //    this.id=id;
