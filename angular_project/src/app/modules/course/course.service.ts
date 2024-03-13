@@ -20,7 +20,6 @@ export class CourseService{
     }
     addCourse(course:Course):Observable<boolean>
     {
-        console.log(course);        
         return this._http.post<boolean>("/api/Course",course);
     }
     updateCourse(course: Course): Observable<boolean> {

@@ -39,7 +39,6 @@ export class LoginComponent implements OnInit {
 
     this._userService.getUsersFromServer().subscribe((data) => {
       let currentUser = data.find(x => x.userName == this.user.userName)
-      console.log(currentUser);
       if (currentUser) {
         if (currentUser?.password != this.user.password)
           Swal.fire({

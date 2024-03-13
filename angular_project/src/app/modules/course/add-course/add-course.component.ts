@@ -24,14 +24,12 @@ export class AddCourseComponent implements OnInit {
       c = JSON.parse(a)
       this.course = c
       this.course.syllabus = c.syllabus
-      console.log(this.course);
       this.selectedIndexCategory = c.categoryId
       this.inputArray = c.syllabus
       this.inputArray.push("")
       this.course.id = c.id
       this.isEdit = true
     }
-    console.log(this.course);
     if (this.course.id == null) {
       this.course = new Course()
       this.course.id = 99999;
@@ -104,18 +102,15 @@ export class AddCourseComponent implements OnInit {
   }
   addCourse() {
     this.inputArray.shift()
-    console.log(this.inputArray);
     this.courseForm.value.id=this.course.id
     this.course = this.courseForm.value;
     const u = sessionStorage.getItem("user")
-    console.log(u);
     if (u != null) {
       let user: User = JSON.parse(u)
       this.course.lecturerId = user.id;
     }
     this.course.learningType = +(this.course.learningType);
     this.course.syllabus = this.inputArray;
-    console.log(this.course);
     this._courseService.addCourse(this.course).subscribe(d => {
       Swal.fire({
         title: `Well done!!! `,
@@ -125,9 +120,6 @@ export class AddCourseComponent implements OnInit {
       this.router.navigate(['course/allCourses'])
     }
     )
-    console.log(this.course);
-    console.log(this.inputArray);
-
   }
   unSaveCourse() {
     this.router.navigate(['course/allCourses'])

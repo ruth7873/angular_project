@@ -46,7 +46,6 @@ export class RegisterComponent {
   }
   registerUser() {
     this.user = this.registerForm.value;
-    console.log(this.user);
     this._userService.addUserToServer(this.user).subscribe({
       next: (res => {
         if (res == undefined) {
@@ -54,11 +53,7 @@ export class RegisterComponent {
             title: `Oops`,
             text: "Username in use, please enter another name!",
             icon: "error"
-          });
-          this.userName = ' ';
-          this.user.userName=" ";
-          console.log(this.userName);
-          
+          });          
         }
         else {
           Swal.fire({

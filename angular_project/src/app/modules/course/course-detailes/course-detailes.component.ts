@@ -25,7 +25,6 @@ export class CourseDetailesComponent implements OnInit {
     let c: Course;
     {
       const course =sessionStorage.getItem("course")
-      console.log(course);
       c = JSON.parse(course)
       this.course = c;
       this._categoryService.getCategories().subscribe(d => {
