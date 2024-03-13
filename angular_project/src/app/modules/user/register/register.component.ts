@@ -31,12 +31,6 @@ export class RegisterComponent {
     if (u) {
       const us = JSON.parse(u);
       userName = us.userName;
-      this._userService.getUsersFromServer().subscribe(d => {
-        let e = d.find(x => x.userName == userName)
-        if (e)
-          this.userExist = true;
-        //  alert("this user name is exist, change it!")
-      })
     }
     this._user = value;
     function userExistValidator(userExist: boolean): ValidatorFn {
@@ -57,22 +51,53 @@ export class RegisterComponent {
       })
     }
   }
+  // registerUser() {
+  //   this.user = this.registerForm.value;
+  //   console.log(this.user);
+  //   this._userService.addUserToServer(this.user).subscribe(() => {
+  //     Swal.fire({
+  //       title: `Hi ${this.user?.userName}`,
+  //       text: "You have successfully registered!!!",
+  //       icon: "success"
+  //     })
+  //     this.router.navigate(['/user/login'])
+  //   }
+  //   )
+  // }
   registerUser() {
+    console.log(this.user.userName);
+    
+    this._userService.getUsersFromServer().subscribe(d => {
+      console.log(d);
+      
+      let e = d.find(x => x.userName.localeCompare(this.user.userName))
+      if (e)
+        this.userExist = true;
+      //  alert("this user name is exist, change it!")
+    })
+    if (this.userExist) {
+        // הצג הודעה או בצע פעולות רלוונטיות עבור משתמש שכבר קיים
+        Swal.fire({
+          title: `Stop!`,
+          text: "This User Name isn't available, replace it!",
+          icon: "warning"
+      })
+        return;
+    }
     this.user = this.registerForm.value;
     console.log(this.user);
     this._userService.addUserToServer(this.user).subscribe(() => {
-      Swal.fire({
-        title: `Hi ${this.user?.userName}`,
-        text: "You have successfully registered!!!",
-        icon: "success"
-      })
-      this.router.navigate(['/user/login'])
-    }
-    )
-  }
+        Swal.fire({
+            title: `Hi ${this.user?.userName}`,
+            text: "You have successfully registered!!!",
+            icon: "success"
+        })
+        this.router.navigate(['/user/login'])
+    });
+}
+
   isLecturer: boolean
   lecturer() {
     this.isLecturer = true
-    // this.router.navigate(['/register',true])
   }
 }

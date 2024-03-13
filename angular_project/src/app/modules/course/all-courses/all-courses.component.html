@@ -1,23 +1,30 @@
-<mat-icon>people</mat-icon>
-<mat-icon>desktop_windows</mat-icon>
-
-<mat-label>Filter by category</mat-label>
-<mat-select #categorySelect (selectionChange)="onCategorySelectionChange($event)" style="width: 180px;">
-    <mat-select-trigger>
-      <span *ngIf="selectedCategory; else defaultOption">{{ selectedCategory.name }}</span>
-      <ng-template #defaultOption>--</ng-template>
-    </mat-select-trigger>
-    <mat-option>--</mat-option>
-    <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat.name }}</mat-option>
-  </mat-select>
-  <div>
-    <mat-radio-group (change)="onSelectionChange($event)">
+<div class="center-container">
+    <div class="filter-container">
+      <mat-form-field>
+        <mat-label>Choose Category</mat-label>
+        <mat-select #categorySelect (selectionChange)="onCategorySelectionChange($event)" style="width: 200px;">
+          <mat-select-trigger>
+            <span *ngIf="selectedCategory; else defaultOption">{{ selectedCategory.name }}</span>
+            <ng-template #defaultOption>--</ng-template>
+          </mat-select-trigger>
+          <mat-option>--</mat-option>
+          <mat-option *ngFor="let cat of categories" [value]="cat">{{ cat.name }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div class="filter-container">
+      <mat-form-field>
+        <input matInput type="text" placeholder="enter name of course" [(ngModel)]="courseName" (input)="filter()" style="width: 200px;" />
+      </mat-form-field>
+    </div>
+    <div class="filter-container">
+      <mat-radio-group (change)="onSelectionChange($event)">
         <mat-radio-button [value]="1">Frontal</mat-radio-button>
         <mat-radio-button [value]="2">Digital</mat-radio-button>
-    </mat-radio-group>
-</div>
-<input type="text" placeholder="enter name of student" [(ngModel)]="courseName" (input)="filter()" />
-
+      </mat-radio-group>
+    </div>
+  </div>
+  
 <div class="cards">
 <mat-card class="example-card" *ngFor="let course of filteredCourses" >
     <mat-card-header>

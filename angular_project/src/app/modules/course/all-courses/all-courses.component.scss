@@ -1,21 +1,34 @@
-// .example-card {
-//     width: max-content;
-// }
-
-// .cards {
-//     margin: 0 auto;
-//     display: flex;
-//     flex-direction: row;
-//     flex-wrap: wrap;
-//     justify-content: center;
-//     align-items: stretch;
-//     width: 500px;
-// }
+.center-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 2%;
+  }
+  
+  .filter-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  
+    mat-label {
+      margin-right: 10px;
+    }
+  
+    mat-select, mat-radio-group, mat-form-field {
+      margin-right: 10px;
+      width: 180px;
+    }
+  
+    input {
+      width: calc(100% - 16px);
+    }
+  }
 .cards {
     margin: 0 auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
     align-items: stretch;
     max-width: 90vw; /* Adjust the max-width as needed */
 }
