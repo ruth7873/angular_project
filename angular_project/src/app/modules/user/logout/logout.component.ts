@@ -34,7 +34,6 @@ export class LogoutComponent implements OnInit {
       }
       else
       this.router.navigate(['course/allCourses'])
-
     });
   }
 }

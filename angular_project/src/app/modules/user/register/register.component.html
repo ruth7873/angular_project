@@ -6,12 +6,8 @@
         </mat-form-field> -->
         <mat-form-field>
             <mat-label>User Name</mat-label>
-            <input matInput type="text" placeholder="user name" formControlName="userName">
-            <ng-container *ngIf="registerForm.controls['userName'].hasError('userExistError')">
-                <mat-error >This username already exists. Please choose a different one.</mat-error>
-            </ng-container>
+            <input matInput type="text" placeholder="user name" formControlName="userName" value="this.userName">
         </mat-form-field>
-
         <ng-container *ngIf="registerForm.controls['userName'].errors && registerForm.controls['userName'].touched">
             <div *ngIf="!registerForm.controls['userName'].errors['required'] && !registerForm.controls['userName'].errors['minLength']"
                 style="color: red;">

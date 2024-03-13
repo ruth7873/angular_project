@@ -9,7 +9,12 @@ namespace server.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        public static List<User> users = new List<User> { new User("AAA", "ass", "dhjkk", "aaa",true) };
+        public static List<User> users = new List<User> {new User("AAA","AAA","AAA@gmail.com","Aa1234",true),
+                                                            new User("BBB","BBB","BBB@gmail.com","Bb1234",false),
+                                                            new User("CCC","CCC","CCC@gmail.com","Cc1234",true),
+                                                            new User("DDD","DDD","DDD@gmail.com","Dd1234",false)
+        
+    };
         // GET: api/<UserController>
         [HttpGet]
         public IEnumerable<User> Get()
@@ -38,9 +43,14 @@ namespace server.Controllers
         }
         // POST api/<UserController>
         [HttpPost]
-        public void Post([FromBody] User value)
+        public User Post([FromBody] User value)
         {
+            var u=users.Find(x => x.UserName == value.UserName);
+            if (u != null)
+                return null;
+            else
             users.Add(new User(value.UserName, value.Address, value.Email, value.Password));
+            return value;
         }
 
         // PUT api/<UserController>/5

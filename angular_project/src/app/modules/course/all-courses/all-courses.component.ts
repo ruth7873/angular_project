@@ -27,7 +27,9 @@ export class AllCoursesComponent implements OnInit {
   getCssClass(course) {
     const dateString = course.beginDate;
     const parts = dateString.split('-');
-    const dateObject = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
+    let dateObject
+    if (parts)
+         dateObject = new Date(`${parts[2]}-${parts[1]}-${parts[0]}`);
     return dateObject < this.nextWeekDateString ? 'date' : null;
   }
   selectedValue = null

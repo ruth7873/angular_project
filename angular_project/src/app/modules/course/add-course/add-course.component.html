@@ -22,20 +22,6 @@
                 </div>
             </ng-container>
         <br>
-        <!-- <mat-form-field>
-            <mat-label>Category</mat-label>
-            <select matNativeControl formControlName="categoryId" (change)="onSelectionCatogoryChanged($event)">
-                <option *ngFor="let category of categories" [value]="category.id">
-                    {{ category.name }}
-                </option>
-            </select>
-        </mat-form-field>
-        <ng-container *ngIf="courseForm.controls['categoryId'].errors && courseForm.controls['categoryId'].touched"
-            style="color: red;">
-            <div *ngIf="courseForm.controls['categoryId'].errors['required']">
-                This field is required
-            </div>
-        </ng-container> -->
         <mat-form-field style="width: 200px;">
             <mat-label>Category</mat-label>
             <select matNativeControl formControlName="categoryId" (change)="onSelectionCatogoryChanged($event)">

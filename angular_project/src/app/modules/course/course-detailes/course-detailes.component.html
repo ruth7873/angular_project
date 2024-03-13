@@ -5,6 +5,7 @@
         <mat-card-title>{{course?.name}}</mat-card-title>
         <mat-card-subtitle>{{category?.name}}
             <mat-icon>{{category?.iconRouting}}</mat-icon>
+            <mat-icon>{{course.learningType|icon }}</mat-icon>
         </mat-card-subtitle>
     </mat-card-header>
     <p><b>Course Duration:</b> {{course?.amount}} Sessions | <b>Learning format:</b> {{learnType[course?.learningType]}}</p>
@@ -20,8 +21,11 @@
         </div>
     </mat-card-content>
     <mat-card-actions>
-        <button mat-button>LIKE</button>
-        <button mat-button>SHARE</button>
+        
+        <button mat-button (click)="print()">
+            <mat-icon>print</mat-icon>PRINT</button>
+        <button mat-button (click)="return()">
+            <mat-icon>arrow_back</mat-icon>RETURN</button>
     </mat-card-actions>
 </mat-card>
 </div>

@@ -34,4 +34,10 @@ export class CourseDetailesComponent implements OnInit {
       }
       )}
   }
+  print(){
+    window.print();
+  }
+  return(){
+    this._router.navigate(['course/allCourses'])
+  }
 }

@@ -42,7 +42,11 @@ export class LoginComponent implements OnInit {
       console.log(currentUser);
       if (currentUser) {
         if (currentUser?.password != this.user.password)
-          alert("wrong password!")
+          Swal.fire({
+            title: `Wrong Password!!!`,
+            icon: "error",
+            timer: 1000
+          });
         else {
           Swal.fire({
             title: `Welcome! ${this.user.userName}`,
