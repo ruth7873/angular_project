@@ -10,7 +10,7 @@
     </mat-card-header>
     <p><b>Course Duration:</b> {{course?.amount}} Sessions | <b>Learning format:</b> {{learnType[course?.learningType]}}</p>
     <p><b>Start Date:</b> {{ course?.beginDate}}</p>
-    <b>Course lecturer: {{course?.lecturerId}}</b>
+    <b>Course lecturer: {{lecturer.userName}}</b>
     <img mat-card-image src={{course?.image}} alt="Photo of a camera">
     <mat-card-content>
         <h2>{{course?.syllabus[0]}}</h2>

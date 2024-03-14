@@ -18,12 +18,13 @@ import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatSelectModule } from '@angular/material/select';
 import { IconPipe } from "./iconPipe";
+import { UserService } from "../user/user.service";
 
 
 @NgModule({
     declarations: [AllCoursesComponent, CourseDetailesComponent, AddCourseComponent,IconPipe],
     imports: [CourseRoutingModule, HttpClientModule, FormsModule,ReactiveFormsModule, CommonModule, MatCardModule, MatButtonModule,MatIconModule,MatFormFieldModule,MatInputModule,MatOptionModule,MatLabel,MatRadioModule,MatDatepickerModule,MatNativeDateModule,MatSelectModule],
-    providers: [CourseService,CategoryService],
+    providers: [CourseService,CategoryService,UserService],
     exports: [MatCardModule,MatButtonModule]
 })
 export class CourseModule {
